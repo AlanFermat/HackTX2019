@@ -9,7 +9,7 @@ def parseTop100(filename):
 		line_count += 1
 		row.append(line[:-1])
 		if line_count % 11 == 0:
-			write_to.write(row[1]+","+row[2]+","+row[4]+","+row[6]+"," +row[7]+","+row[-2]+"\n")
+			write_to.write(row[1]+","+"\""+row[2]+"\""+","+"\""+row[4]+"\""+","+"\""+row[6]+"\""+","+"\"" +row[7]+"\""+","+"\""+row[-2]+"\""+"\n")
 			row = []
 
 
