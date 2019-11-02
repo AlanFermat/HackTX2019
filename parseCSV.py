@@ -5,11 +5,9 @@ def parse(filename, headerline, footline):
 	write_to = open("new" + filename, 'w')
 	company_name = None
 	with open(filename) as csv_file:
-		line_count = 0
 		for line in csv_file:
-			row = line.split(" \t")
-			write_to.write(row[0] + "," + "\"" + row[1][:-1] + "\"" + "\n")
+			if line[-1]
 	return result
 
 
-parse('acer-supplier-list.csv', 0,0)
+parse('Lenovo-Supplier-List.csv', 0,0)
