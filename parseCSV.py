@@ -10,15 +10,20 @@ def parse(filename, headerline, footline):
 			if line_count <= headerline or line_count >= footline:
 				line_count += 1
 				continue
-			row = []
-			if line[0] != ",":
-				row = line.split(",")
-				company_name = row[0]
-				# print ("".join(row[1:]))
-				write_to.write(company_name + "," + "".join(row[1:]))
-			else:
-				write_to.write(company_name + line)
+			if line[0] == ",":
+				line = line[1:]
+			if line[:4] != "Page":
+				line_split = line.split(",,")
+				if len(line_split) == 2:
+					write_to.write(line_split[0] + "," + line_split[1])
+				elif len(line_split) == 1:
+					line = line_split[0]
+					if line[-2:] == ",\n":
+						write_to.write(line[:-2] + '\n')
+					else:
+						write_to.write(line)
+			line_count += 1
 	return result
 
 
-parse('Sumsung-Supplier-List.csv', -1, 1450)
+parse('lenovo-supplier-list.csv', 16, 80)
