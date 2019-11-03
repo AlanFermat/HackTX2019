@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import Autocomplete from "./component/autocomplete"
 import CompanyInfo from "./component/companyInfo";
 import CompanyCard from "./component/companyCard";
 import { Jumbotron, Input, Form, } from 'reactstrap';
@@ -26,7 +25,6 @@ class App extends Component{
     
   }
   
-
   render() {
       return (
         <div id = 'root' >
