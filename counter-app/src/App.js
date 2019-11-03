@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import neo4j from "neo4j-driver/lib/browser/neo4j-web";
+import CompanyInfo from "./component/hacktxfa2019";
 import { Neo4jGraphRenderer } from 'neo4j-graph-renderer';
 
 class App extends Component{
@@ -41,8 +42,10 @@ class App extends Component{
             <input type = "text" value = {this.state.value} onChange = {this.handleUserInput} /> 
           </label> 
           <input type = "submit" value = "Submit"/> 
-        </form> 
+        </form>
+        
       </div>
+      <CompanyInfo  />
       </div> 
     );
   }
