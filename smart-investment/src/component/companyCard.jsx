@@ -10,15 +10,74 @@ class CompanyCard extends Component {
 	constructor(props) {
     	super(props);
     	console.log(this.props.name);
+    		this.state = {
+		score: 60,
+		companyInfo: {
+    _id: "5dbe989bcd94ac4b4ff5b5c4",
+    name: "Apple",
+    revenue:100,
+    profit: 100,
+    assets: 100,
+    market_value:1000,
+    employees: 2000,
+    positive_tweets: 33,
+    negative_tweets: 33,
+    neutral_tweets: 33
+}  
+  	}
+    	this.getCompany((responseText) => {
+    		var json = JSON.parse(responseText);
+		this.setState({
+			companyInfo: json
+		});
+	});
 	}
 
-	state = {
-		score: 60,
-	    dataPie: {
+
+
+	getCompany(callback){
+		var data = JSON.stringify({
+			"name": this.props.name
+		  });
+
+		  console.log(data);
+
+		  var xhr = new XMLHttpRequest();
+		  //xhr.withCredentials = true;
+		  // const companyInfo = {};
+		  xhr.callback = callback;
+		  xhr.addEventListener("readystatechange", function () {
+			if (this.readyState === 4) {
+			  let companyInfo = this.responseText;
+			  console.log(companyInfo);
+			  callback(this.responseText);
+			}
+		  });
+		  
+		  xhr.open("POST", "http://localhost:3001/company");
+		  xhr.setRequestHeader("Content-Type", "application/json");
+		  xhr.setRequestHeader("Accept", "*/*");
+		  xhr.setRequestHeader("Cache-Control", "no-cache");
+		  xhr.setRequestHeader("cache-control", "no-cache");
+		  xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+		  // xhr.timeout = 4000;
+		  xhr.send(data);
+		  // return xhr.responseText;
+		  // console.log(xhr.response.body);
+	}
+
+	render() {
+
+		// this.setState({
+		//   	companyInfo: this.getCompany()
+		//   });
+		const dataPie = {
 	      labels: ["Positive", "Negative", "Neutral"],
 	      datasets: [
 	        {
-	          data: [30, 30, 30],
+	          data: [this.state.companyInfo.positive_tweets, 
+	          this.state.companyInfo.negative_tweets, 
+	          this.state.companyInfo.neutral_tweets],
 	          backgroundColor: [
 	            "#F7464A",
 	            "#46BFBD",
@@ -31,40 +90,7 @@ class CompanyCard extends Component {
 	          ]
 	        }
 	      ]
-	    }
-  	}
-
-	getCompany(){
-		var data = JSON.stringify({
-			"name": this.props.name
-		  });
-
-		  console.log(data);
-
-		  var xhr = new XMLHttpRequest();
-		  //xhr.withCredentials = true;
-		  
-		  xhr.addEventListener("readystatechange", function () {
-			if (this.readyState === 4) {
-			  console.log(this.responseText);
-			}
-		  });
-		  
-		  xhr.open("POST", "http://localhost:3001/company");
-		  xhr.setRequestHeader("Content-Type", "application/json");
-		  xhr.setRequestHeader("Accept", "*/*");
-		  xhr.setRequestHeader("Cache-Control", "no-cache");
-		  xhr.setRequestHeader("cache-control", "no-cache");
-		  xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-		  
-		  xhr.send(data);
-
-		  console.log(xhr.response.body);
-	}
-
-	render() {
-
-		this.getCompany();
+	    };
 
 		const Query = "match (c:Company)<-[r:IS_SUPPLIER_FOR]-(n:Supplier) where c.name = '" + this.props.name + "' return n,r,c limit 40";
 		let description;
@@ -81,6 +107,9 @@ class CompanyCard extends Component {
 									"environmental influences, social impacts, and governance. We do not recommend investing in this company."
 			}
 		}
+		// console.log("render");
+		// console.log(this.state.companyInfo);
+		// console.log(this.state.companyInfo.revenue);
 		return (
 			<div>
 			<Row md="6">
@@ -122,23 +151,23 @@ class CompanyCard extends Component {
 							  <tbody>
 							    <tr>
 							      <td>Revenues($M)</td>
-							      <td>10000</td>
+							      <td id="revenue">{this.state.companyInfo.revenue}</td>
 							    </tr>
 							    <tr>
 							      <td>Profits($M)</td>
-							      <td>10000</td>
+							      <td id="profit">{this.state.companyInfo.profit}</td>
 							    </tr>
 							    <tr>
 							      <td>Assets($M)</td>
-							      <td>10000</td>
+							      <td id="assets">{this.state.companyInfo.assets}</td>
 							    </tr>
 							    <tr>
 							    	<td>Market Value($M)</td>
-							    	<td>100</td>
+							    	<td id="market_value">{this.state.companyInfo.market_value}</td>
 							    </tr>
 							    <tr>
 							    	<td>Employees</td>
-							    	<td>2133</td>
+							    	<td id="employees">{this.state.companyInfo.employees}</td>
 							    </tr>
 							  </tbody>
 							</Table>
@@ -146,9 +175,9 @@ class CompanyCard extends Component {
 					</Row>
 					<Row md="12">
 						<Card body style={{height: '27rem', backgroundColor: '#f5f5f5'}}>
-				          <MDBContainer>
+				          <MDBContainer id="pie">
 					        <h2 className="mt-2">Public Sentiment</h2>
-					        <Pie data={this.state.dataPie} options={{ responsive: true }} />
+					        <Pie data={dataPie} options={{ responsive: true }}/>
 					      </MDBContainer>
 				        </Card>
 					</Row>
@@ -158,6 +187,8 @@ class CompanyCard extends Component {
 			
 		);
 	}
+
+
 
 }
 

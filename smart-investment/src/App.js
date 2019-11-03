@@ -44,13 +44,13 @@ class App extends Component{
         <Navbar expand="md col-4" style={{backgroundColor:'#d3d3d3', width:"35rem"}}>
           <Nav>
             <NavItem>
-              <NavLink href="#">Home</NavLink>
+              <NavLink href="/component/">Home</NavLink>
             </NavItem>
             <NavItem style={{marginLeft:'5rem'}}>
               <NavLink href="#">Labor Info</NavLink>
             </NavItem>
             <NavItem style={{marginLeft:'5rem'}}>
-              <NavLink href="#">Support</NavLink>
+              <NavLink href="https://github.com/AlanFermat/HackTX2019">Support</NavLink>
             </NavItem>
           </Nav>
       </Navbar>
