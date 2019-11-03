@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import CompanyInfo from "./component/hacktxfa2019";
+import CompanyInfo from "./component/companyInfo";
 import CompanyCard from "./component/companyCard";
 
 class App extends Component{
@@ -32,7 +32,6 @@ class App extends Component{
         <div class = "name-to-be-altered">
           <h1 class = "title-name"> Moral Investment </h1> 
         </div>
-         
       </header> 
       <div class = "form-submission" >
         <form onSubmit = {this.handleSubmit} >
