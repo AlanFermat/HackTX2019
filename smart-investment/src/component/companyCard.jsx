@@ -5,12 +5,14 @@ import { Card, CardText, Row, Col, Table } from 'reactstrap';
 import { Neo4jGraphRenderer } from 'neo4j-graph-renderer';
 import { Pie } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
+import axios from "axios";
 
 class CompanyCard extends Component {
 	constructor(props) {
     	super(props);
     	console.log(this.props.name);
 	}
+
 	state = {
 		score: 60,
 	    dataPie: {
