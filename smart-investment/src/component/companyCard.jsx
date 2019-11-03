@@ -5,7 +5,6 @@ import { Card, CardText, Row, Col, Table } from 'reactstrap';
 import { Neo4jGraphRenderer } from 'neo4j-graph-renderer';
 import { Pie } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
-import axios from "axios";
 
 class CompanyCard extends Component {
 	constructor(props) {
@@ -40,20 +39,40 @@ class CompanyCard extends Component {
 	      ]
 	    }
   	}
-  	// var instance = axios.create({
-  	// 	baseURL: "https://localhost:3001/company",
-  	// 	responseType: "json"
-  	// });
+
+	  
+	getCompany(){
+		var data = JSON.stringify({
+			"name": this.props.name
+		  });
+
+		  console.log(data);
+
+		  var xhr = new XMLHttpRequest();
+		  //xhr.withCredentials = true;
+		  
+		  xhr.addEventListener("readystatechange", function () {
+			if (this.readyState === 4) {
+			  console.log(this.responseText);
+			}
+		  });
+		  
+		  xhr.open("POST", "http://localhost:3001/company");
+		  xhr.setRequestHeader("Content-Type", "application/json");
+		  xhr.setRequestHeader("Accept", "*/*");
+		  xhr.setRequestHeader("Cache-Control", "no-cache");
+		  xhr.setRequestHeader("cache-control", "no-cache");
+		  xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+		  
+		  xhr.send(data);
+
+		  console.log(xhr.response.body);
+	}
 
 	render() {
-		  	const response = async () => {
-  		console.log("here");
-	    return
-	      await axios.get("https://localhost:3001/company",
-	          { params: {name: this.props.name}}
-	      );
 
-	};
+		this.getCompany();
+
 		const Query = "match (c:Company)<-[r:IS_SUPPLIER_FOR]-(n:Supplier) where c.name = '" + this.props.name + "' return n,r,c limit 40";
 		let description;
 		if (this.state.score >= 80) {
@@ -144,6 +163,7 @@ class CompanyCard extends Component {
 			
 		);
 	}
+
 }
 
 export default CompanyCard;
