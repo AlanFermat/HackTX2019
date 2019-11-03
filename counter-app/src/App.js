@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import CompanyInfo from "./component/companyInfo";
 import CompanyCard from "./component/companyCard";
+import { Jumbotron, Input, Form, } from 'reactstrap';
 
 class App extends Component{
     constructor(props) {
@@ -29,20 +30,22 @@ class App extends Component{
       return (
         <div id = 'root' >
       <header >
-        <div class = "name-to-be-altered">
-          <h1 class = "title-name"> Moral Investment </h1> 
-        </div>
-      </header> 
-      <div class = "form-submission" >
-        <form onSubmit = {this.handleSubmit} >
-          <label>
-            Enter a Company:
-            <input type = "text" value = {this.state.value} onChange = {this.handleUserInput} /> 
-          </label> 
-          <input type = "submit" value = "Submit"/> 
-        </form>
-        
+      <div>
+      <Jumbotron>
+        <h1 className="display-3">Moral Investment</h1>
+        <p className="lead">Invest in companies with a healthy supply chain. Learn more <a href="https://github.com/AlanFermat/HackTX2019">here</a>. </p>
+        <hr className="my-2" />
+        <p>HackTX 2019</p>
+        <div className="lead">
+        <br />
+        <Form className = "btn  float-right" onSubmit = {this.handleSubmit} >
+            <Input type = "text" value = {this.state.value} placeholder = "Enter a Company here" onChange = {this.handleUserInput} /> 
+        </Form>
       </div>
+      </Jumbotron>
+    </div>
+      </header> 
+
       { this.state.companyName === '' 
         ? <CompanyInfo /> 
         : <CompanyCard name={this.state.companyName}/>
