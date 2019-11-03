@@ -12,33 +12,48 @@ class CompanyCard extends Component {
     	console.log(this.props.name);
 	}
 	state = {
-    dataPie: {
-      labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
-      datasets: [
-        {
-          data: [300, 50, 100, 40, 120],
-          backgroundColor: [
-            "#F7464A",
-            "#46BFBD",
-            "#FDB45C",
-            "#949FB1",
-            "#4D5360",
-            "#AC64AD"
-          ],
-          hoverBackgroundColor: [
-            "#FF5A5E",
-            "#5AD3D1",
-            "#FFC870",
-            "#A8B3C5",
-            "#616774",
-            "#DA92DB"
-          ]
-        }
-      ]
-    }
-  }
+		score: 60,
+	    dataPie: {
+	      labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+	      datasets: [
+	        {
+	          data: [300, 50, 100, 40, 120],
+	          backgroundColor: [
+	            "#F7464A",
+	            "#46BFBD",
+	            "#FDB45C",
+	            "#949FB1",
+	            "#4D5360",
+	            "#AC64AD"
+	          ],
+	          hoverBackgroundColor: [
+	            "#FF5A5E",
+	            "#5AD3D1",
+	            "#FFC870",
+	            "#A8B3C5",
+	            "#616774",
+	            "#DA92DB"
+	          ]
+	        }
+	      ]
+	    }
+  	}
 	render() {
 		const Query = "match (c:Company)<-[r:IS_SUPPLIER_FOR]-(n:Supplier) where c.name = '" + this.props.name + "' return n,r,c limit 50";
+		let description;
+		if (this.state.score >= 80) {
+			description = this.props.name+" Inc. is a company that shows a high score on the overall evaluation of " + 
+					"environmental influences, social impacts, and governance. We highly recommend investing on this company."
+		} else {
+			if (this.state.score > 60 && this.state.score < 80) {
+				description = this.props.name+" Inc. is a company that shows a mediocre score on the overall evaluation of " +
+									"environmental influences, social impacts, and governance. We would not say investing this company is a good idea but we " + 
+									"are also not against it."
+			} else {
+				description = this.props.name+" Inc. is a company that shows a low score on the overall evaluation of " +
+									"environmental influences, social impacts, and governance. We do not recommend investing on this company."
+			}
+		}
 		return (
 			<div>
 			<Row md="6">
@@ -46,16 +61,26 @@ class CompanyCard extends Component {
 					<h1>{this.props.name}</h1>
 				</Col>
 				<Col md="4" className="text-center">
-					<h1>Score 80</h1>
+					<h1>Score {this.state.score}</h1>
 				</Col>
 			</Row>
 			<Row md="6"> 
 				<Col md="8"> 
-					<Card body>
-						<Neo4jGraphRenderer url={process.env.REACT_APP_NEO4J_URI} user={process.env.REACT_APP_NEO4J_USER}
-		        password={process.env.REACT_APP_NEO4J_PASSWORD} 
-		        query={Query}/>
-					</Card>
+					<Row md="2">
+						<Card body className="text-left"> 
+							<CardText> 
+								{description}
+							</CardText>									
+						</Card>
+					</Row>
+					<Row md="6">
+						<Card body style={{height: '49rem'}}>
+							<Neo4jGraphRenderer url={process.env.REACT_APP_NEO4J_URI} user={process.env.REACT_APP_NEO4J_USER}
+			        password={process.env.REACT_APP_NEO4J_PASSWORD} 
+			        query={Query}/>
+						</Card>
+					</Row>
+
 				</Col>
 				<Col md="4"> 
 					<Row md="12">
