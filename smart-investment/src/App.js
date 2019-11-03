@@ -3,6 +3,7 @@ import "./App.css";
 import CompanyInfo from "./component/companyInfo";
 import CompanyCard from "./component/companyCard";
 import { Jumbotron, Input, Form, } from 'reactstrap';
+import background from "./images/background.jpeg";
 
 class App extends Component{
     constructor(props) {
@@ -26,6 +27,7 @@ class App extends Component{
   }
   
   render() {
+      const imageUrl = background;
       return (
         <div id = 'root' >
       <header >
@@ -44,11 +46,12 @@ class App extends Component{
       </Jumbotron>
     </div>
       </header> 
+      <div style={{backgroundImage: `url(${imageUrl})`}}>
       { this.state.companyName === '' 
-        ? <CompanyInfo /> 
+        ? <CompanyInfo/> 
         : <CompanyCard name={this.state.companyName}/>
       }
-      
+      </div>
       </div> 
     );
   }
