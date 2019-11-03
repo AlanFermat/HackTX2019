@@ -6,7 +6,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  background-color: #85DCB0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -14,6 +13,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+#graph {
+  background-color: rgba(251,238,228,0.3)
 }
 .display-3 {
   font-family: 'Playfair Display', serif;
@@ -27,10 +29,17 @@ p {
 CardText {
   font-family: 'Monda', sans-serif;
 }
+table {
+  font-family: 'Monda', sans-serif;
+}
 .text-center {
   font-family: 'Playfair Display', serif;
 }
 .mt-2 {
+  font-family: 'Playfair Display', serif;
+  margin-left: -1.0rem;
+}
+h2 {
   font-family: 'Playfair Display', serif;
 }
 Pie {
