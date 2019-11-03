@@ -12,11 +12,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.name-to-be-altered {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background-color: #41B3A3;
-  padding-bottom: 5%;
-  padding-top: 5%;
-}

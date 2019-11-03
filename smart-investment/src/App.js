@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import Autocomplete from "./component/autocomplete"
 import CompanyInfo from "./component/companyInfo";
 import CompanyCard from "./component/companyCard";
 import { Jumbotron, Input, Form, } from 'reactstrap';
@@ -29,6 +30,7 @@ class App extends Component{
   render() {
       return (
         <div id = 'root' >
+<<<<<<< Updated upstream:smart-investment/src/App.js
       <header >
       <div>
       <Jumbotron>
@@ -46,6 +48,27 @@ class App extends Component{
     </div>
       </header> 
 
+=======
+      <header>
+        <div class = "name-to-be-altered">
+          <h1 class = "title-name"> Moral Investment </h1>
+          <div class = "form-submission" >
+          <form onSubmit = {this.handleSubmit} >
+          <Autocomplete
+            suggestions={[
+             "Allen",
+             "Apple",
+             "Alex",
+             "Me"
+            ]}
+            /> 
+            <input type = "submit" value = "Submit"/> 
+          </form>
+          </div>
+        </div>
+      </header>  
+      
+>>>>>>> Stashed changes:counter-app/src/App.js
       { this.state.companyName === '' 
         ? <CompanyInfo /> 
         : <CompanyCard name={this.state.companyName}/>
