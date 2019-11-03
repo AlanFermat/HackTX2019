@@ -1,51 +1,16 @@
 import React, {
   Component
 } from 'react';
-
-
-
-class CompanyForm extends React.Component {
-  constructor (props) {
-    super(props); 
-    this.state={
-      value: '',
-      formErrors: {value: ''
-                  }};
+import { Neo4jGraphRenderer } from 'neo4j-graph-renderer';
     
-    this.handleChange =
-this.handleChange.bind(this);  
-    this.handleSubmit = 
-this.handleSubmit.bind(this);
-  }
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-  handleSubmit(event) {
-    alert('A company was submitted: ' + 
-this.state.value);
-    event.preventDefault();
-  }
   render() {
-    return (
-      <div id='root'>
-       <header>
-         <div class="name-to-be-altered">
-           <h1 class="title-name">HackTx 2019</h1>
-         </div>
-       </header>
-        <div class="form-submission">
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Enter a Company: 
-            <input type="text" value=
-  {this.state.value} onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
-        </div>
-      </div>
-    
+    return ( 
+      <div>
+      <Neo4jGraphRenderer url={process.env.REACT_APP_NEO4J_URI} user={process.env.REACT_APP_NEO4J_USER}
+        password={process.env.REACT_APP_NEO4J_PASSWORD} 
+        query="match (c1:Company)<-[r1:IS_SUPPLIER_FOR]-(n:Supplier)-[r2:IS_SUPPLIER_FOR]->(c2:Company) return n,r1,c1,r2,c2"/>
+    </div>
     );
-  }    
+  }
 }
-export default CompanyForm;
+export default CompanyInfo;
