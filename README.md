@@ -6,7 +6,7 @@
 4. ~~Render the App on Azure using Neo4j~~
 5. ~~Visualize the graph on 5 supply-chains~~
 6. Build a UI to present the visualization + result (score from sentimental analysis)
-6.1. 100 company visualization + presentation
 7. More sophisticated model for senti-analysis
 8. Web app deployed
+9. 100 company visualization + presentation
 
