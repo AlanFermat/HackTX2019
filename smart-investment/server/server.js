@@ -3,12 +3,14 @@ var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
 var url = "mongodb://hacktx3:SYbsXZtnFFZNLhX0VTinqsVoP3a4dwpAJfsTPNscPVqUCJWgJllZQczDjcm7UANmWOfVT25xDVptQewSbZb4Jg==@hacktx3.mongo.cosmos.azure.com:10255/?ssl=true";
 // var json = require('./test2.json'); 
+const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3001;
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use(
@@ -34,7 +36,8 @@ app.get('/', (request, response) => {
 //         // break;
 //     }
 // };
-app.get('/company', (request, response) => {
+app.post('/company', (request, response) => {
+  console.log(request.body);
     MongoClient.connect(url, function(err, client) {
         assert.equal(null, err);
         var db = client.db('hacktx');

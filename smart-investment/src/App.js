@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import CompanyInfo from "./component/companyInfo";
 import CompanyCard from "./component/companyCard";
-import { Jumbotron, Input, Form, } from 'reactstrap';
+import { Jumbotron, Input, Form, Navbar, NavItem, NavLink, NavbarBrand, NavbarToggler, Nav} from 'reactstrap';
 import background from "./images/background.jpeg";
 
 class App extends Component{
@@ -41,11 +41,23 @@ class App extends Component{
         <hr className="my-2" />
         <p>HackTX 2019</p>
         <div className="lead">
-        <br />
-        <Form className = "btn  float-right" onSubmit = {this.handleSubmit} >
-            <Input type = "text" value = {this.state.value} placeholder = "Enter a Company here" onChange = {this.handleUserInput} /> 
+        <Navbar expand="md col-4" style={{backgroundColor:'#d3d3d3', width:"35rem"}}>
+          <Nav>
+            <NavItem>
+              <NavLink href="#">Home</NavLink>
+            </NavItem>
+            <NavItem style={{marginLeft:'5rem'}}>
+              <NavLink href="#">Labor Info</NavLink>
+            </NavItem>
+            <NavItem style={{marginLeft:'5rem'}}>
+              <NavLink href="#">Support</NavLink>
+            </NavItem>
+          </Nav>
+      </Navbar>
+        <Form className = "btn " onSubmit = {this.handleSubmit} style={{marginLeft:'70rem'}}>
+            <Input style={{paddingRight:'10rem'}} type = "text" value = {this.state.value} placeholder = "Enter a Company here" onChange = {this.handleUserInput} /> 
         </Form>
-      </div>
+        </div>
       </Jumbotron>
     </div>
       </header> 
