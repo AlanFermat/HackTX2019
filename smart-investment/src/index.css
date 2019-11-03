@@ -6,7 +6,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  background-color: #85DCB0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -31,6 +30,9 @@ CardText {
   font-family: 'Playfair Display', serif;
 }
 .mt-2 {
+  font-family: 'Playfair Display', serif;
+}
+h2 {
   font-family: 'Playfair Display', serif;
 }
 Pie {

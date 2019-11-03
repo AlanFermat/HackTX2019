@@ -53,7 +53,7 @@ class CompanyCard extends Component {
 									"are also not against it."
 			} else {
 				description = this.props.name+" Inc. is a company that shows a low score on the overall evaluation of " +
-									"environmental influences, social impacts, and governance. We do not recommend investing on this company."
+									"environmental influences, social impacts, and governance. We do not recommend investing in this company."
 			}
 		}
 		return (
@@ -85,7 +85,8 @@ class CompanyCard extends Component {
 				</Col>
 				<Col md="5"> 
 					<Row md="12">
-						<Card body style={{ marginTop: '0%', height: '24rem',backgroundColor: '#f5f5f5',paddingRight:"3rem" }}>
+						<Card body style={{ marginTop: '0%', height: '20rem',backgroundColor: '#f5f5f5',paddingRight:"3rem" }}>
+				            <h2>Financial Data</h2>
 				            <Table striped bordered hover size="sm">
 							  <thead>
 							    <tr>
@@ -121,7 +122,7 @@ class CompanyCard extends Component {
 					<Row md="12">
 						<Card body style={{height: '27rem', backgroundColor: '#f5f5f5'}}>
 				          <MDBContainer>
-					        <h3 className="mt-2">Pie chart</h3>
+					        <h2 className="mt-2">Pie chart</h2>
 					        <Pie data={this.state.dataPie} options={{ responsive: true }} />
 					      </MDBContainer>
 				        </Card>
