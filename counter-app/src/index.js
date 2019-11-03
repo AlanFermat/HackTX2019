@@ -4,9 +4,9 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
-import Counters from './component/Counters';
+import CompanyForm from './component/hacktxfa2019';
 
-ReactDOM.render(<Counters />, document.getElementById('root'));
+ReactDOM.render(<CompanyForm />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
