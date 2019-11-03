@@ -2,6 +2,7 @@ import re
 import tweepy 
 from tweepy import OAuthHandler 
 from textblob import TextBlob 
+import pandas as pd
   
 class TwitterClient(object): 
     ''' 
@@ -12,10 +13,10 @@ class TwitterClient(object):
         Class constructor or initialization method. 
         '''
         # keys and tokens from the Twitter Dev Console 
-        consumer_key = 'Ktfh9H69M3iXBfdTlG4Lvddm5'
-        consumer_secret = '4Ib2mCgK7ICpnv5U7pjNUpUtumo9HGBRieWZsMYNHwovZnGYYW'
-        access_token = '950872483183374336-aH6dvmrEKNVhPgdifBoRgtURBR30IIf'
-        access_token_secret = 'HFPglsKaUAHRHOC2gx2b6VmUDCbwubHHSmD6BmWBmlG7u'
+        consumer_key = '19EYFxVRWyuq8foiHt256M7ex'
+        consumer_secret = 'U3QIwcFAg1opraIkjYYLSs62jQ3p7AiuGI2cUDOUEPUg8ZIlCk'
+        access_token = '950872483183374336-6FlRM4dTq2Hz3qD6vnmXRcOJi5hLvRZ'
+        access_token_secret = 'vSGXFEaSqgKXsIoITZExOXVfP9aprv3fnCq3iwJnM8RSX'
   
         # attempt authentication 
         try: 
@@ -87,51 +88,57 @@ class TwitterClient(object):
             # print error (if any) 
             print("Error : " + str(e)) 
   
-def analyze(query_words, counts): 
-    # creating object of TwitterClient Class 
-    api = TwitterClient() 
+def analyze(query_words, counts, api): 
+
+    
     # calling function to get tweets 
     tweets = api.get_tweets(query = query_words, count = counts) 
-  
-    # picking positive tweets from tweets 
-    ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
-    positive_percentage =  100*len(ptweets)/len(tweets)
-    print("analyzing: " + query_words)
-    # percentage of positive tweets 
-    print("Positive tweets percentage: {} %".format(positive_percentage)) 
-    # picking negative tweets from tweets 
-    ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative'] 
-    negative_percentage =  100*len(ntweets)/len(tweets)
-    # percentage of negative tweets 
-    print("Negative tweets percentage: {} %".format(negative_percentage))
-    # percentage of neutral tweets 
-    print("Neutral tweets percentage: {} %".format(100 - negative_percentage - positive_percentage))
-    
-    # # printing first 5 positive tweets 
-    # print("\n\nPositive tweets:") 
-    # for tweet in ptweets[:10]: 
-    #     print(tweet['text']) 
-  
-    # # printing first 5 negative tweets 
-    # print("\n\nNegative tweets:") 
-    # for tweet in ntweets[:10]: 
-    #     print(tweet['text']) 
+    negative_percentage = 0
+    positive_percentage = 0
+    if tweets:
+        # picking positive tweets from tweets 
+        ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
+        if len(tweets) != 0:
+            positive_percentage =  100*len(ptweets)/len(tweets)
+        print("analyzing: " + query_words)
+        # percentage of positive tweets 
+        print("Positive tweets percentage: {} %".format(positive_percentage)) 
+        # picking negative tweets from tweets 
+        ntweets = [tweet for tweet in tweets if tweet['sentiment'] == 'negative'] 
+        if len(tweets) != 0:
+            negative_percentage =  100*len(ntweets)/len(tweets)
+        # percentage of negative tweets 
+        print("Negative tweets percentage: {} %".format(negative_percentage))
+        # percentage of neutral tweets 
+        print("Neutral tweets percentage: {} %".format(100 - negative_percentage - positive_percentage))
+        # # printing first 5 positive tweets 
+        # print("\n\nPositive tweets:") 
+        # for tweet in ptweets[:10]: 
+        #     print(tweet['text']) 
+      
+        # # printing first 5 negative tweets 
+        # print("\n\nNegative tweets:") 
+        # for tweet in ntweets[:10]: 
+        #     print(tweet['text']) 
     return [positive_percentage, negative_percentage]
   
 if __name__ == "__main__": 
-    filename = "top_100_company_tweet_sentimental_report.csv"
+    filename = "acer_supplier_tweet_sentimental_report.csv"
     output = open(filename, "w")
     output.write("company name, positive tweets(%), negative tweets(%), neutral tweets(%)\n")
-    counts = 10000
-    with open('top_100_company_info.csv') as data:
-        line_cnt = 0 
-        for line in data:
-            if line_cnt == 0:
-                line_cnt += 1
-                continue
-            else:
-                print(line_cnt)
-                name = line[:line.index(",")]
-                pos, neg = analyze(name, counts)
-                output.write(name + "," + str(pos)[:10] + "," + str(neg)[:10]+ ","+str(100-pos-neg)[:10] +'\n')
-                line_cnt += 1
+    counts = 100
+    line_cnt = 0
+    csv = 'Apple-Supplier-List.csv'
+    df = pd.read_csv(csv, names=['Suppliers'], usecols=[0])
+    names = list(df.Suppliers.unique())
+    # creating object of TwitterClient Class 
+    api = TwitterClient() 
+    print(len(names))
+    # for name in names:
+    #     print(line_cnt)
+    #     pos, neg = analyze(name, counts, api)
+    #     if pos != 0 and neg != 0:
+    #         output.write(name + "," + str(pos)[:10] + "," + str(neg)[:10]+ ","+str(100-pos-neg)[:10] +'\n')
+    #     line_cnt += 1
+
+
