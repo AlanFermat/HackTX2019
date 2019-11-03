@@ -10,27 +10,21 @@ class CompanyCard extends Component {
 	constructor(props) {
     	super(props);
     	console.log(this.props.name);
-    		this.state = {
-		score: 60,
-		companyInfo: {
-    _id: "5dbe989bcd94ac4b4ff5b5c4",
-    name: "Apple",
-    revenue:100,
-    profit: 100,
-    assets: 100,
-    market_value:1000,
-    employees: 2000,
-    positive_tweets: 33,
-    negative_tweets: 33,
-    neutral_tweets: 33
-}  
-  	}
-    	this.getCompany((responseText) => {
-    		var json = JSON.parse(responseText);
-		this.setState({
-			companyInfo: json
-		});
-	});
+    	this.state = {
+			score: 60,
+			companyInfo: {
+			    _id: "5dbe989bcd94ac4b4ff5b5c4",
+			    name: "Apple",
+			    revenue:100,
+			    profit: 100,
+			    assets: 100,
+			    market_value:1000,
+			    employees: 2000,
+			    positive_tweets: 33,
+			    negative_tweets: 33,
+			    neutral_tweets: 33
+			}  
+  		}	
 	}
 
 
@@ -91,6 +85,12 @@ class CompanyCard extends Component {
 	        }
 	      ]
 	    };
+	    this.getCompany((responseText) => {
+    		var json = JSON.parse(responseText);
+		this.setState({
+			companyInfo: json
+		});
+		});
 
 		const Query = "match (c:Company)<-[r:IS_SUPPLIER_FOR]-(n:Supplier) where c.name = '" + this.props.name + "' return n,r,c limit 40";
 		let description;
