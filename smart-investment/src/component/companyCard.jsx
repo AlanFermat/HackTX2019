@@ -61,7 +61,7 @@ class CompanyCard extends Component {
 					<h1>{this.props.name}</h1>
 				</Col>
 				<Col md="5" className="text-center">
-					<h1>Score {this.state.score}</h1>
+					<h1>Score: {this.state.score}</h1>
 				</Col>
 			</Row>
 			<Row md="6"> 
@@ -74,7 +74,7 @@ class CompanyCard extends Component {
 						</Card>
 					</Row>
 					<Row md="6">
-						<Card body style={{height: '60rem', backgroundColor: '#f5f5f5', paddingLeft:"3rem" }}>
+						<Card body style={{height: '40rem', backgroundColor: '#f5f5f5', paddingLeft:"3rem" }}>
 							<Neo4jGraphRenderer url={process.env.REACT_APP_NEO4J_URI} user={process.env.REACT_APP_NEO4J_USER}
 			        password={process.env.REACT_APP_NEO4J_PASSWORD} 
 			        query={Query}/>
@@ -83,7 +83,7 @@ class CompanyCard extends Component {
 				</Col>
 				<Col md="5"> 
 					<Row md="12">
-						<Card body style={{ marginTop: '0%', height: '14rem',backgroundColor: '#f5f5f5',paddingRight:"3rem" }}>
+						<Card body style={{ marginTop: '0%', height: '20rem',backgroundColor: '#f5f5f5',paddingRight:"3rem" }}>
 				            <Table striped bordered hover size="sm">
 							  <thead>
 							    <tr>
@@ -113,14 +113,6 @@ class CompanyCard extends Component {
 							    </tr>
 							  </tbody>
 							</Table>
-				        </Card>
-					</Row>
-					<Row md="12">
-						<Card body style={{height: '26rem', backgroundColor: '#f5f5f5'}}>
-				          <MDBContainer>
-					        <h3 className="mt-2">Pie chart</h3>
-					        <Pie data={this.state.dataPie} options={{ responsive: true }} />
-					      </MDBContainer>
 				        </Card>
 					</Row>
 					<Row md="12">
