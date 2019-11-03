@@ -16,25 +16,19 @@ class CompanyCard extends Component {
 	state = {
 		score: 60,
 	    dataPie: {
-	      labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+	      labels: ["Positive", "Negative", "Neutral"],
 	      datasets: [
 	        {
-	          data: [300, 50, 100, 40, 120],
+	          data: [30, 30, 30],
 	          backgroundColor: [
 	            "#F7464A",
 	            "#46BFBD",
-	            "#FDB45C",
-	            "#949FB1",
-	            "#4D5360",
-	            "#AC64AD"
+	            "#FDB45C"
 	          ],
 	          hoverBackgroundColor: [
 	            "#FF5A5E",
 	            "#5AD3D1",
-	            "#FFC870",
-	            "#A8B3C5",
-	            "#616774",
-	            "#DA92DB"
+	            "#FFC870"
 	          ]
 	        }
 	      ]
