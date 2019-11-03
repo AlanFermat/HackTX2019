@@ -1,7 +1,7 @@
 import React, {
   Component
 } from 'react';
-import { Card, Button, CardTitle, CardText, Row, Col, Table } from 'reactstrap';
+import { Card, CardText, Row, Col, Table } from 'reactstrap';
 import { Neo4jGraphRenderer } from 'neo4j-graph-renderer';
 import { Pie } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
@@ -67,14 +67,14 @@ class CompanyCard extends Component {
 			<Row md="6"> 
 				<Col md="8"> 
 					<Row md="2">
-						<Card body className="text-left"> 
+						<Card body className="text-left" style={{backgroundColor: '#f5f5f5'}}> 
 							<CardText> 
 								{description}
 							</CardText>									
 						</Card>
 					</Row>
 					<Row md="6">
-						<Card body style={{height: '49rem'}}>
+						<Card body style={{height: '49rem', backgroundColor: '#f5f5f5' }}>
 							<Neo4jGraphRenderer url={process.env.REACT_APP_NEO4J_URI} user={process.env.REACT_APP_NEO4J_USER}
 			        password={process.env.REACT_APP_NEO4J_PASSWORD} 
 			        query={Query}/>
@@ -84,7 +84,7 @@ class CompanyCard extends Component {
 				</Col>
 				<Col md="4"> 
 					<Row md="12">
-						<Card body style={{ marginTop: '0%', height: '24rem' }}>
+						<Card body style={{ marginTop: '0%', height: '24rem',backgroundColor: '#f5f5f5' }}>
 				            <Table striped bordered hover size="sm">
 							  <thead>
 							    <tr>
@@ -117,7 +117,7 @@ class CompanyCard extends Component {
 				        </Card>
 					</Row>
 					<Row md="12">
-						<Card body style={{height: '30rem', marginBottom:'0%'}}>
+						<Card body style={{height: '30rem', marginBottom:'0%', backgroundColor: '#f5f5f5'}}>
 				          <MDBContainer>
 					        <h3 className="mt-5">Pie chart</h3>
 					        <Pie data={this.state.dataPie} options={{ responsive: true }} />
