@@ -1,28 +1,27 @@
 import React, { Component } from "react";
 import "./App.css";
-import neo4j from "neo4j-driver/lib/browser/neo4j-web";
 import CompanyInfo from "./component/hacktxfa2019";
-import { Neo4jGraphRenderer } from 'neo4j-graph-renderer';
+import CompanyCard from "./component/companyCard";
 
 class App extends Component{
     constructor(props) {
     super(props);
-      this.state = {
-      value: ''}
-  this.handleUserInput =
-  this.handleUserInput.bind(this);
-  this.handleSubmit =
-      this.handleSubmit.bind(this);
+    this.state = {value: '', companyName:''}
+    this.handleUserInput = this.handleUserInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleUserInput(event) {
+    event.preventDefault();
     this.setState({
       value: event.target.value
     });
   }
   handleSubmit(event) {
-    alert('A company was submitted: ' +
-      this.state.value);
     event.preventDefault();
+    this.setState({
+      companyName: this.state.value
+    });
+    
   }
   
 
@@ -45,7 +44,11 @@ class App extends Component{
         </form>
         
       </div>
-      <CompanyInfo  />
+      { this.state.companyName === '' 
+        ? <CompanyInfo /> 
+        : <CompanyCard name={this.state.companyName}/>
+      }
+      
       </div> 
     );
   }
