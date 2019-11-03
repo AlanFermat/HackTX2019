@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Monda&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -11,4 +14,22 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.display-3 {
+  font-family: 'Playfair Display', serif;
+}
+.lead {
+  font-family: 'Monda', sans-serif;
+}
+p {
+  font-family: 'Monda', sans-serif;
+}
+CardText {
+  font-family: 'Monda', sans-serif;
+}
+.text-center {
+  font-family: 'Playfair Display', serif;
+}
+.mt-2 {
+  font-family: 'Playfair Display', serif;
 }
