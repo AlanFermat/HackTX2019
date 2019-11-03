@@ -116,7 +116,7 @@ class CompanyCard extends Component {
 					<Row md="12">
 						<Card body style={{height: '27rem', backgroundColor: '#f5f5f5'}}>
 				          <MDBContainer>
-					        <h2 className="mt-2">Pie chart</h2>
+					        <h2 className="mt-2">Public Sentiment</h2>
 					        <Pie data={this.state.dataPie} options={{ responsive: true }} />
 					      </MDBContainer>
 				        </Card>

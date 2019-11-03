@@ -26,11 +26,15 @@ p {
 CardText {
   font-family: 'Monda', sans-serif;
 }
+table {
+  font-family: 'Monda', sans-serif;
+}
 .text-center {
   font-family: 'Playfair Display', serif;
 }
 .mt-2 {
   font-family: 'Playfair Display', serif;
+  margin-left: -1.0rem;
 }
 h2 {
   font-family: 'Playfair Display', serif;
