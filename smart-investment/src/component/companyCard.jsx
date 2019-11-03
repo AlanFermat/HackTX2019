@@ -87,13 +87,23 @@ class CompanyCard extends Component {
 	    };
 	    this.getCompany((responseText) => {
     		var json = JSON.parse(responseText);
-		this.setState({
-			companyInfo: json
-		});
+			this.setState({
+				companyInfo: json
+			});
+			this.setState({
+				score: Math.round(this.state.companyInfo.profit * 100 / this.state.companyInfo.employees + this.state.companyInfo.positive_tweets)
+			});
 		});
 
 		const Query = "match (c:Company)<-[r:IS_SUPPLIER_FOR]-(n:Supplier) where c.name = '" + this.props.name + "' return n,r,c limit 40";
 		let description;
+		// console.log(this.state.companyInfo.profit / this.state.companyInfo.employees);
+
+		// let num = JSON.parse(this.state.companyInfo.profit) / JSON.parse(this.state.companyInfo.employees);
+		// console.log(num);
+		// this.setState({
+		// 	score: num
+		// })
 		if (this.state.score >= 80) {
 			description = this.props.name+" Inc. is a company that shows a high score on the overall evaluation of " + 
 					"environmental influences, social impacts, and governance. We highly recommend investing on this company."
