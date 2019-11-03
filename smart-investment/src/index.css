@@ -15,33 +15,42 @@ code {
     monospace;
 }
 #graph {
+  /*This is for the background image for the graph on main page*/
   background-color: rgba(251,238,228,0.3)
 }
 .display-3 {
+  /*This is for the main company page on main page */
   font-family: 'Playfair Display', serif;
 }
 .lead {
+  /*This is for the subtext below the tile on the main page*/
   font-family: 'Monda', sans-serif;
 }
 p {
   font-family: 'Monda', sans-serif;
 }
 CardText {
+  /*This is for the cards on company pages*/
   font-family: 'Monda', sans-serif;
 }
 table {
   font-family: 'Monda', sans-serif;
 }
 .text-center {
+  /*Company name and Score*/
   font-family: 'Playfair Display', serif;
+  color: white;
 }
 .mt-2 {
+  /*Title for sentiment analyisis*/
   font-family: 'Playfair Display', serif;
   margin-left: -1.0rem;
 }
 h2 {
+  /*Title for table*/
   font-family: 'Playfair Display', serif;
 }
 Pie {
+  /*Color names*/
   font-family: 'Monda', sans-serif;
 }

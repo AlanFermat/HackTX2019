@@ -13,12 +13,14 @@ class App extends Component{
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleUserInput(event) {
+    {/*User Input for company query*/}
     event.preventDefault();
     this.setState({
       value: event.target.value
     });
   }
   handleSubmit(event) {
+    {/*Server side query term*/}
     event.preventDefault();
     this.setState({
       companyName: this.state.value
@@ -30,9 +32,10 @@ class App extends Component{
       const imageUrl = background;
       return (
         <div id = 'root' >
-      <header >
+      <header>
       <div>
       <Jumbotron>
+        {/*This is the large header at the top of the all pages*/} 
         <h1 className="display-3">Moral Investment</h1>
         <p className="lead">Invest in companies with a healthy supply chain. Learn more <a href="https://github.com/AlanFermat/HackTX2019">here</a>. </p>
         <hr className="my-2" />
