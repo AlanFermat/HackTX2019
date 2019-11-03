@@ -40,20 +40,7 @@ class CompanyCard extends Component {
 	      ]
 	    }
   	}
-  	// var instance = axios.create({
-  	// 	baseURL: "https://localhost:3001/company",
-  	// 	responseType: "json"
-  	// });
-
 	render() {
-		  	const response = async () => {
-  		console.log("here");
-	    return
-	      await axios.get("https://localhost:3001/company",
-	          { params: {name: this.props.name}}
-	      );
-
-	};
 		const Query = "match (c:Company)<-[r:IS_SUPPLIER_FOR]-(n:Supplier) where c.name = '" + this.props.name + "' return n,r,c limit 40";
 		let description;
 		if (this.state.score >= 80) {
